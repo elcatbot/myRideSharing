@@ -1,0 +1,106 @@
+1️⃣ Define the Core Services
+
+Start with just the essentials and add others incrementally.
+
+| Service                  | Responsibility                                                       | Suggested Data Store                    |
+| ------------------------ | -------------------------------------------------------------------- | --------------------------------------- |
+| **Rider Service**        | Sign-up/login, manage rider profiles                                 | SQL Server/PostgreSQL                   |
+| **Driver Service**       | Driver registration, vehicle details, driver status (online/offline) | SQL Server/PostgreSQL                   |
+| **Trip Service**         | Create & track trips, match drivers and riders                       | MongoDB or PostgreSQL                   |
+| **Pricing Service**      | Dynamic fare calculation                                             | Redis (for surge data) + SQL/PostgreSQL |
+| **Notification Service** | Send push/SMS/email updates                                          | NoSQL or message queue                  |
+
+Optional later:
+
+Payment Service (simulate payment gateway)
+
+Analytics Service (trip statistics, heat maps)
+
+2️⃣ Plan Communication
+
+Synchronous calls:
+
+Trip → Pricing to get fare estimate (REST or gRPC).
+
+Asynchronous events (recommended for scalability):
+
+TripRequested → Driver Service picks up.
+
+TripCompleted → Payment & Analytics services update.
+
+Use RabbitMQ or Azure Service Bus for messaging.
+
+3️⃣ Shared Infrastructure
+
+API Gateway: YARP or Ocelot to expose a single public endpoint (/api/…).
+
+Service Discovery: Kubernetes DNS or Consul.
+
+Authentication: IdentityServer or Duende + JWT.
+
+Observability: OpenTelemetry for tracing + Prometheus/Grafana.
+
+4️⃣ Development Milestones
+🟢 Milestone 1: Monorepo Prototype
+
+Build a simple ASP.NET Core minimal API for each service.
+
+Containerize each service with Docker.
+
+Use a single database instance to simplify.
+
+Goal: One rider requests a trip, one driver accepts.
+
+🟠 Milestone 2: Introduce Messaging & Separate Databases
+
+Split into individual databases (one per service).
+
+Add RabbitMQ and publish TripRequested events.
+
+Implement a basic saga to handle trip lifecycle (requested → accepted → completed).
+
+🟡 Milestone 3: Real-Time Updates
+
+Add SignalR/WebSockets for live location & trip status.
+
+Driver app/service periodically sends GPS coordinates.
+
+Rider front-end subscribes to a trip channel.
+
+🟣 Milestone 4: Resilience & Observability
+
+Add Polly for retries/circuit breakers.
+
+Implement distributed tracing with OpenTelemetry + Jaeger.
+
+Add structured logging (Serilog).
+
+🟤 Milestone 5: Advanced Features
+
+Pricing surge logic (use Redis to cache demand stats).
+
+Basic payment simulation.
+
+Deploy to Kubernetes (AKS, EKS, or local K3s/Minikube).
+
+Suggested Tech Stack
+
+Backend: .NET 9 Minimal APIs
+
+Databases: PostgreSQL for relational, MongoDB/Redis where fits
+
+Messaging: RabbitMQ
+
+Front-end: Blazor or React (optional for UI)
+
+Deployment: Docker + Kubernetes + Helm
+
+Learning Focus
+
+Service boundaries and data ownership
+
+Event-driven communication & eventual consistency
+
+Handling long-running workflows (saga pattern)
+
+Observability and scaling strategies
