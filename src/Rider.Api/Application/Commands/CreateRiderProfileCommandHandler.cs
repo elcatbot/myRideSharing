@@ -1,8 +1,3 @@
-using MediatR;
-using myRiderSharing.RiderApi.Application.Commands.DTOs;
-using myRiderSharing.RiderApi.Application.Models;
-using myRiderSharing.RiderApi.Infrastructure;
-
 namespace myRiderSharing.RiderApi.Application.Commands;
 
 public class CreateRiderProfileCommandHandler(IRiderRepository Repository) : IRequestHandler<CreateRiderProfileCommand, bool>

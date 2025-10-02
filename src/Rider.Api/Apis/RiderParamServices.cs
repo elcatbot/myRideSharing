@@ -1,5 +1,3 @@
-using MediatR;
-
 namespace myRiderSharing.RiderApi.Apis;
 
 public class RiderParamServices(

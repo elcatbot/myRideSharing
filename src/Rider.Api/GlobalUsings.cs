@@ -1,0 +1,15 @@
+global using myRiderSharing.RiderApi.Application.Models;
+global using MediatR;
+global using Microsoft.AspNetCore.Http.HttpResults;
+global using myRiderSharing.RiderApi.Application.Commands.DTOs;
+global using Microsoft.EntityFrameworkCore;
+global using myRiderSharing.RiderApi.Apis;
+global using myRiderSharing.RiderApi.Infrastructure;
+global using myRiderSharing.RiderApi.Application.Queries.DTOs;
+global using myRiderSharing.RiderApi;
+global using Dapper;
+global using System.Data;
+global using Microsoft.Data.SqlClient;
+global using Microsoft.Extensions.Options;
+global using Microsoft.Data.Sqlite;
+global using myRiderSharing.RiderApi.Extensions;

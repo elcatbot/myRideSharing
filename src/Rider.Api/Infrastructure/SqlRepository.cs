@@ -1,13 +1,9 @@
-using myRiderSharing.RiderApi.Application.Models;
-
 namespace myRiderSharing.RiderApi.Infrastructure;
 
-public class PostgreSqlRepository : IRiderRepository
+public class SqlRepository(RiderDbContext Context) : IRiderRepository
 {
-    public Task<Rider> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<Rider> GetByIdAsync(int id)
+        => (await Context.Riders.FirstOrDefaultAsync(r => r.Id == id))!;
 
     public Task AddAsync(Rider rider)
     {

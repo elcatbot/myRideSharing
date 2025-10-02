@@ -1,5 +1,3 @@
-using myRiderSharing.RiderApi.Application.Models;
-
 namespace myRiderSharing.RiderApi.Infrastructure;
 
 public interface IRiderRepository

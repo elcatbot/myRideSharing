@@ -1,14 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using myRiderSharing.RiderApi.Apis;
-using myRiderSharing.RiderApi.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Services.AddDbContext<RiderDbContext>(o => o.UseInMemoryDatabase("RiderDB"));
+builder.Configuration.GetSection(nameof(RiderConfigOptions)).Get<RiderConfigOptions>();
 
-builder.Services.AddTransient<IRiderRepository, PostgreSqlRepository>();
+builder.Services.AddDbContext<RiderDbContext>(o => o.UseSqlite(builder.Configuration["RiderSettingOptions:ConnectionString"]));
+
+builder.Services.AddTransient<IRiderRepository, SqlRepository>();
 
 builder.Services.AddMediatR(conf => conf.RegisterServicesFromAssemblyContaining(typeof(Program)));
 
@@ -25,6 +24,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapRiderApiV1();
+
+app.InitDbContextMigration();
 
 app.Run();
 

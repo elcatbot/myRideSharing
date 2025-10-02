@@ -1,5 +1,3 @@
-using MediatR;
-
 namespace myRiderSharing.RiderApi.Application.Commands.DTOs;
 
 public record CreateRiderProfileCommand : IRequest<bool>
