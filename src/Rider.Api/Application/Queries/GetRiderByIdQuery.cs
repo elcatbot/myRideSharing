@@ -1,3 +1,3 @@
-namespace myRiderSharing.RiderApi.Application.Queries.DTOs;
+namespace myRiderSharing.RiderApi.Application.Queries;
 
 public record GetRiderByIdQuery(int id) : IRequest<Rider>;

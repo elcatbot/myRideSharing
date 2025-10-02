@@ -8,7 +8,6 @@ public class GetRiderByIdHandler(IOptions<RiderConfigOptions> Options) : IReques
     {
         using IDbConnection connection = new SqliteConnection(options.ConnectionString);
         connection.Open();
-        // return await connection.QueryFirstAsync<Rider>(@"select SQLITE_VERSION() AS Version");
-        return await connection.QueryFirstAsync<Rider>("SELECT * FROM Riders WHERE Id = @id", new { request.id });
+        return (await connection.QueryFirstOrDefaultAsync<Rider>("SELECT * FROM Riders WHERE Id = @id", new { request.id }))!;
     }
 }

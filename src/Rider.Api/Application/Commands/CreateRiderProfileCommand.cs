@@ -1,4 +1,4 @@
-namespace myRiderSharing.RiderApi.Application.Commands.DTOs;
+namespace myRiderSharing.RiderApi.Application.Commands;
 
 public record CreateRiderProfileCommand : IRequest<bool>
 {

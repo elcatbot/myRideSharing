@@ -1,6 +1,6 @@
 namespace myRiderSharing.RiderApi;
 
-public record RiderConfigOptions()
+public sealed class RiderConfigOptions
 {
     public string? ConnectionString { get; set; }
     public string? EventBusConnection { get; set; }

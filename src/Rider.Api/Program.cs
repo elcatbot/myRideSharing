@@ -3,8 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Configuration.GetSection(nameof(RiderConfigOptions)).Get<RiderConfigOptions>();
+builder.Services.Configure<RiderConfigOptions>(
+    builder.Configuration.GetSection(nameof(RiderConfigOptions))
+);
 
+// builder.Services.AddDbContext<RiderDbContext>(o => o.UseInMemoryDatabase("Riders"));
 builder.Services.AddDbContext<RiderDbContext>(o => o.UseSqlite(builder.Configuration["RiderSettingOptions:ConnectionString"]));
 
 builder.Services.AddTransient<IRiderRepository, SqlRepository>();

@@ -1,6 +1,29 @@
 @Rider.Api_HostAddress = http://localhost:5247
 
-GET {{Rider.Api_HostAddress}}/weatherforecast/
+GET {{Rider.Api_HostAddress}}/api/rider/4
 Accept: application/json
 
 ###
+POST {{Rider.Api_HostAddress}}/api/rider/
+Content-Type: application/json
+
+{
+  "UserId": 4,
+  "fullName": "Rider 4",
+  "email": "rider4@sharing.com",
+  "phoneNumber": "9545654",
+  "rating": 3.0    
+}
+
+###
+PUT {{Rider.Api_HostAddress}}/api/rider/
+Content-Type: application/json
+
+{
+  "Id": 4,
+  "UserId": 4,
+  "fullName": "Rider 44",
+  "email": "rider44@sharing.com",
+  "phoneNumber": "9545654",
+  "rating": 3.9    
+}
