@@ -32,9 +32,9 @@ public static class MigrateDbContext
                         context.Riders.AddRange(
                             new List<Rider>()
                             {
-                                new() { Id = 1, UserId = 1, FullName = "Rider 1", Email = "rider1@sharing.com", PhoneNumber = "2563152", Rating = 4, CreatedAt = DateTime.Now },
-                                new() { Id = 2, UserId = 2, FullName = "Rider 2", Email = "rider2@sharing.com", PhoneNumber = "2563152", Rating = 5, CreatedAt = DateTime.Now },
-                                new() { Id = 3, UserId = 3, FullName = "Rider 3", Email = "rider3@sharing.com", PhoneNumber = "2563152", Rating = 3.5m, CreatedAt = DateTime.Now },
+                                new() { UserId = 1, FullName = "Rider 1", Email = "rider1@sharing.com", PhoneNumber = "2563152", Rating = 4, CreatedAt = DateTimeOffset.Now },
+                                new() { UserId = 2, FullName = "Rider 2", Email = "rider2@sharing.com", PhoneNumber = "2563152", Rating = 5, CreatedAt = DateTimeOffset.Now },
+                                new() { UserId = 3, FullName = "Rider 3", Email = "rider3@sharing.com", PhoneNumber = "2563152", Rating = 3.5m, CreatedAt = DateTimeOffset.Now },
                             }
                         );
                         context.SaveChanges();

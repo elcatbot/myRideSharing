@@ -8,9 +8,9 @@ POST {{Rider.Api_HostAddress}}/api/rider/
 Content-Type: application/json
 
 {
-  "UserId": 4,
-  "fullName": "Rider 4",
-  "email": "rider4@sharing.com",
+  "UserId": 5,
+  "fullName": "Rider 45",
+  "email": "rider5@sharing.com",
   "phoneNumber": "9545654",
   "rating": 3.0    
 }

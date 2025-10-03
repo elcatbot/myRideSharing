@@ -16,7 +16,7 @@ public class UpdateRiderProfileCommandHandler(IRiderRepository Repository) : IRe
             rider.Email = request.Email;
             rider.PhoneNumber = request.PhoneNumber;
             rider.Rating = request.Rating;
-            rider.UpdatedAt = DateTime.Now;
+            rider.UpdatedAt = DateTimeOffset.Now;
 
             await Repository.UpdateAsync(rider);
             await Repository.SaveChangesAsync();

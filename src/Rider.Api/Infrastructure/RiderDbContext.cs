@@ -6,7 +6,11 @@ public class RiderDbContext(DbContextOptions<RiderDbContext> options) : DbContex
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Rider>().ToTable("Riders");
-        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Rider>()
+            .ToTable("riders")
+            .HasKey(c => c.Id);
+
+        modelBuilder.UseIdentityAlwaysColumns();
+
     }
 }

@@ -7,8 +7,13 @@ builder.Services.Configure<RiderConfigOptions>(
     builder.Configuration.GetSection(nameof(RiderConfigOptions))
 );
 
-// builder.Services.AddDbContext<RiderDbContext>(o => o.UseInMemoryDatabase("Riders"));
-builder.Services.AddDbContext<RiderDbContext>(o => o.UseSqlite(builder.Configuration["RiderSettingOptions:ConnectionString"]));
+builder.Services.AddDbContext<RiderDbContext>(o =>
+{
+    o.UseNpgsql(@"Host=localhost;Port=5432;Username=admin;Password=ccdPAZ28;Database=myriderdb");
+    o.UseSnakeCaseNamingConvention();
+});
+// builder.EnrichNpgsqlDbContext<RiderDbContext>();
+// builder.Services.AddDbContext<RiderDbContext>(o => o.UseSqlite(builder.Configuration["RiderSettingOptions:ConnectionString"]));
 
 builder.Services.AddTransient<IRiderRepository, SqlRepository>();
 
